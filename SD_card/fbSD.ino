@@ -15,6 +15,7 @@ void InitSD()
 
   if(SDFreeSize() > 25) {
     Serial.println("ok");
+    SD.begin(chipSelect);
   };
   
 
@@ -31,4 +32,23 @@ uint32_t SDFreeSize()
   volumesize /= 1024;
   return volumesize;
 };
+
+void SDCardWrite()
+{
+  int s = millis();
+  File dataFile = SD.open("datalos.txt", FILE_WRITE);
+  
+  // if the file is available, write to it:
+  if (dataFile) {
+    dataFile.println(dataString);
+    dataFile.close();
+    // print to the serial port too:
+    //Serial.println(dataString);
+    Serial.println(millis()-s);
+  }
+  // if the file isn't open, pop up an error:
+  else {
+    Serial.println("error opening datalog.txt");
+  }
+}
 

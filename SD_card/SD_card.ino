@@ -9,6 +9,8 @@ SdFile root;
 
 const int chipSelect = D0;
 
+String dataString = "$F;0000-00-00;00:00:00;00.0;000;x;0.000001;x;0.000001;00;0000;0000>000;00.0;x;0;00;00.0;00.0;000;0<";
+
 void setup()
 {
   Serial.begin(9600);
@@ -17,7 +19,8 @@ void setup()
 
 
 void loop(void) {
- Serial.println(SDFreeSize());
- delay(2000);
+ //Serial.println(SDFreeSize());
+
+ SDCardWrite();
 
 }
