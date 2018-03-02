@@ -68,7 +68,7 @@ void fbNeoPix(String wait, String color, unsigned int brightness){
 
 };
 
-void fbNeoPixStatus(byte Status){
+void fbNeoPixStatus(int Status){
     unsigned int c1 = 0;
     unsigned int c2 = 0;
     unsigned int c3 = 0;
@@ -83,49 +83,49 @@ void fbNeoPixStatus(byte Status){
        pixels.show(); // This sends the updated pixel color to the hardware.
       break;
     //SD card not present
-    case 1:
+    case 10:
        c1 = 255;
        c2 = 0;
        c3 = 0;
        iWait = 300;
       break;
     //SD card full
-    case 2:
+    case 20:
        c1 = 255;
        c2 = 0;
        c3 = 0;
        iWait = 750;
       break;
     //Standby      
-    case 3:
+    case 30:
        c1 = 255;
        c2 = 255;
        c3 = 0;
        iWait = 750;
       break;
     //Standby (GPS has fix)
-    case 4:
+    case 40:
        c1 = 0;
        c2 = 0;
        c3 = 250;
        iWait = 750;
       break;
     //Logging
-    case 5:
+    case 50:
        c1 = 0;
        c2 = 255;
        c3 = 0;
        iWait = 1500;
       break;
     //Battery medium (while logging)
-    case 51:
+    case 510:
        c1 = 255;
        c2 = 133;
        c3 = 25;
        iWait = 750;
       break;
     //Battery low (while logging)
-    case 52:
+    case 520:
        c1 = 255;
        c2 = 133;
        c3 = 25;

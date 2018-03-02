@@ -30,32 +30,32 @@ void loop() {
     Serial.println("0");
   };
   if (millis() > 2500 && millis() < 5000) {
-    fbNeoPixStatus(1);
-    Serial.println("1");
+    fbNeoPixStatus(10);
+    Serial.println("10");
   };
   if (millis() > 5000 && millis() < 10000) {
-    fbNeoPixStatus(2);
-    Serial.println("2");
+    fbNeoPixStatus(20);
+    Serial.println("20");
   };
   if (millis() > 10000 && millis() < 15000) {
-    fbNeoPixStatus(3);
-    Serial.println("3");
+    fbNeoPixStatus(30);
+    Serial.println("30");
   };
   if (millis() > 15000 && millis() < 20000) {
-    fbNeoPixStatus(4);
-    Serial.println("4");
+    fbNeoPixStatus(40);
+    Serial.println("40");
   };
   if (millis() > 20000 && millis() < 25000) {
-    fbNeoPixStatus(5);
-    Serial.println("5");
+    fbNeoPixStatus(50);
+    Serial.println("50");
   };
   if (millis() > 25000 && millis() < 30000) {
-    fbNeoPixStatus(51);
-    Serial.println("51");
+    fbNeoPixStatus(510);
+    Serial.println("510");
   };
   if (millis() > 30000 && millis() < 35000) {
-    fbNeoPixStatus(52);
-    Serial.println("52");
+    fbNeoPixStatus(520);
+    Serial.println("520");
   };
 
 }
