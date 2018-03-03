@@ -20,7 +20,10 @@ void setup()
 
 void loop(void) {
  //Serial.println(SDFreeSize());
-
- SDCardWrite();
+ int s = millis();
+ 
+ Serial.println(SDCardWrite("180302.dat", 101));
+ 
+ Serial.println(millis()-s);
 
 }

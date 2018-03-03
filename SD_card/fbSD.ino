@@ -33,22 +33,32 @@ uint32_t SDFreeSize()
   return volumesize;
 };
 
-void SDCardWrite()
+boolean SDCardWrite(String dest, byte datalenght)
+/*
+Input:  - file name, destination 
+        - lenght of the telegram (plus 2 char [CF; LF])
+
+Output: - HIGH if the command was executed succefully
+        - LOW if the command was not executed
+*/
 {
-  int s = millis();
-  File dataFile = SD.open("datalos.txt", FILE_WRITE);
+  byte charnum = 0;
   
-  // if the file is available, write to it:
+  File dataFile = SD.open(dest, FILE_WRITE);
+  
   if (dataFile) {
-    dataFile.println(dataString);
+    charnum = dataFile.println(dataString);
     dataFile.close();
-    // print to the serial port too:
-    //Serial.println(dataString);
-    Serial.println(millis()-s);
+    if (charnum == datalenght) {
+      return HIGH;
+    } 
+    else {
+       return LOW;
+    };
+    
   }
-  // if the file isn't open, pop up an error:
   else {
-    Serial.println("error opening datalog.txt");
+    return LOW;
   }
 }
 
