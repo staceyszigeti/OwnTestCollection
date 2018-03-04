@@ -1,50 +1,49 @@
  #include <TinyGPS++.h>
-/*
-   This sample code demonstrates the normal use of a TinyGPS++ (TinyGPSPlus) object.
-   It requires the use of SoftwareSerial, and assumes that you have a
-   4800-baud serial GPS device hooked up on pins 4(rx) and 3(tx).
-*/
-long previousMillis = 0;
-long interval = 3000;
 
-// The TinyGPS++ object
+//--GPS dekralálás----------------------------
+String sGpsDate = "";
+String sGpsTime = "";
+String sGpsLat = "";
+String sGpsLon = "";
+String sGpsStatus = "";
+String sGps3DFix = "";
+String sGpsFixQuality = "";
+String sGpsSatNum = "";
+String sGpsHDOP = "";
+String sGpsCOG = "";
+String sGpsSOG = "";
+String sGpsFailCheksum = "";
+
+long previousMillis = 0;
+
 TinyGPSPlus gps;
 
-TinyGPSCustom gpsDate(gps, "GPRMC", 9);
-TinyGPSCustom gpsTime(gps, "GPRMC", 1);
-TinyGPSCustom gpsLat(gps, "GPRMC", 3);
-TinyGPSCustom gpsLon(gps, "GPRMC", 5);
+TinyGPSCustom gpsTime(gps,        "GPRMC", 1);
+TinyGPSCustom gpsStatus(gps,      "GPRMC", 2);  // Active o. Void
+TinyGPSCustom gpsLat(gps,         "GPRMC", 3 );
+TinyGPSCustom gpsLon(gps,         "GPRMC", 5);
+TinyGPSCustom gpsDate(gps,        "GPRMC", 9);
 
-/*
+TinyGPSCustom gps3DFix(gps,       "GPGSA", 2); // 1 = no fix, 2 = 2D fix, 3 = 3D fix
 
-    Serial.print(F(" PDOP=")); Serial.print(pdop.value()); 
-    Serial.print(F(" HDOP=")); Serial.print(hdop.value()); 
-    Serial.print(F(" VDOP=")); Serial.print(vdop.value());
- 
- */
+TinyGPSCustom gpsFixQuality(gps,  "GPGGA", 6); // 0 = invalid, 1 = GPS fix (SPS), 2 = DGPS fix, 3 = PPS fix, 4 = Real Time Kinematic, 5 = Float RTK, 6 = estimated (dead reckoning), 7 = Manual input mode, 8 = Simulation mode
+TinyGPSCustom gpsSatNum(gps,      "GPGGA", 7);
+TinyGPSCustom gpsHDOP(gps,        "GPGGA", 8 );
+
+TinyGPSCustom gpsCOG(gps,         "GPVTG", 1);
+TinyGPSCustom gpsSOG(gps,         "GPVTG", 5);
 
 void setup()
 {
   Serial.begin(9600);
-  Serial.println(F("Sats HDOP  Latitude   Longitude   Fix  Date       Time     Date Alt    Course Speed Card  Distance Course Card  Chars Sentences Checksum"));
-  Serial.println(F("           (deg)      (deg)       Age                      Age  (m)    --- from GPS ----  ---- to London  ----  RX    RX        Fail"));
-  Serial.println(F("----------------------------------------------------------------------------------------------------------------------------------------"));
 }
 
 void loop() 
 {
-  unsigned long currentMillis = millis();
-  if (currentMillis - previousMillis > interval)
-  {
-    previousMillis = currentMillis;
-    Serial.print(F(" Date=")); Serial.print(gpsDate.value()); 
-    Serial.print(F(" Time=")); Serial.print(gpsTime.value()); 
-    Serial.print(F(" Lat=")); Serial.print(gpsLat.value());
-    Serial.print(F(" Lon=")); Serial.println(gpsLon.value());
-  }
 
-  while (Serial.available() > 0)
-    gps.encode(Serial.read());
+  //Serial.println(fbGPSEncode(1000));
+  fbGPSEncode(1000);
+
 }
 
 

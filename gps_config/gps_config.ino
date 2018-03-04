@@ -19,6 +19,7 @@ void setup()
   Serial.print("$PMTK313,1*2E\r\n");  
   Serial.print("$PMTK301,1*2D\r\n");
   Serial.print("$PMTK220,100*2F\r\n");
+  Serial.print("$PMTK314,1,1,1,1,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0*2C\r\n");
 }
 
 void loop()
