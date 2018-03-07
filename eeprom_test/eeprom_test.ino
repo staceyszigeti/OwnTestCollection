@@ -20,11 +20,11 @@ void setup()
 
 void loop()
 {
-  eepromWrite(4, 89);
+  eepromWrite(1, 1);
 
-  delay(2000);
+  /*delay(2000);
 
-  Serial.println(eepromRead(11));
+  Serial.println(eepromRead(11));*/
 
   delay(2000);
 }
