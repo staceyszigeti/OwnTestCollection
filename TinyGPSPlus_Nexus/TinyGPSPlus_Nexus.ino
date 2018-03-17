@@ -1,7 +1,7 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 #include "Timer.h"
-SoftwareSerial ss(D3, D2); //wemosnál a nexus syerverrel
+SoftwareSerial ss(D3, D4); //wemosnál a nexus syerverrel
 
 Timer t;
 
