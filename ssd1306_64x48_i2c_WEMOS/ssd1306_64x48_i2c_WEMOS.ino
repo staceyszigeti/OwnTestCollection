@@ -11,7 +11,7 @@ Adafruit invests time and resources providing this open source code,
 please support Adafruit and open-source hardware by purchasing
 products from Adafruit!
 
-Written by Limor Fried/Ladyada  for Adafruit Industries.
+Written by Limor Fried/Ladyada  for Adafruit Industries
 BSD license, check license.txt for more information
 All text above, and the splash screen must be included in any redistribution
 *********************************************************************/
@@ -45,25 +45,46 @@ void setup()   {
 
   // Clear the buffer.
   display.clearDisplay();
-
-  // text display tests
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
-  display.setCursor(0,0);
-  display.println("Hello, world!");
-  display.setTextColor(BLACK, WHITE); // 'inverted' text
-  display.println(3.141592);
-  display.setTextSize(2);
-  display.setTextColor(WHITE);
-  display.print("0x"); display.println(0xDEADBEEF, HEX);
-  display.display();
-  delay(2000);
-  display.clearDisplay();
-
-  display.clearDisplay();
   drawBitMap(1,16);
   display.display();
   delay(2000);
+
+  // text display tests
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+
+  display.setCursor(0,0);
+  display.println("N");
+  display.setCursor(8,0);
+  display.println("47.505198");
+
+  display.setCursor(0,8);
+  display.println("E");
+  display.setCursor(8,8);
+  display.println("19.066825");
+  
+  display.setCursor(0,16);
+  display.println("BSP:");
+  display.setCursor(34,16);
+  display.println("xxx.x");
+  
+  display.setCursor(0,24);
+  display.println("Status:");
+  display.setCursor(52,24);
+  display.println("40");
+  
+  display.setCursor(0,32);
+  display.println("Pitch:");
+  display.setCursor(34,32);
+  display.println("xxx.x");
+  
+  display.setCursor(0,40);
+  display.println("Roll:");
+  display.setCursor(34,40);
+  display.println("xxx.x");
+  
+  display.display();
   
 }
 
