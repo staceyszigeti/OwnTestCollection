@@ -76,7 +76,7 @@ void myTimerEvent()
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   WiFi.begin(ssid, pass);  
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
