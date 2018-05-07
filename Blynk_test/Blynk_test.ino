@@ -62,6 +62,17 @@ char auth[] = "f232e41a757945378ec2dff5e9e106bf";
 char ssid[] = "UPC2D87C5A";
 char pass[] = "Ha7twFejvahm";
 
+BlynkTimer timer;
+
+// This function sends Arduino's up time every second to Virtual Pin (5).
+// In the app, Widget's reading frequency should be set to PUSH. This means
+// that you define how often to send data to Blynk App.
+void myTimerEvent()
+{
+  // You can send any value at any time.
+  // Please don't send more that 10 values per second.
+  Blynk.virtualWrite(V5, millis() / 10);
+}
 
 void setup()
 {
@@ -82,12 +93,14 @@ void setup()
     // Wait until connected
   }
   Serial.println("Connected to Blynk server");
+  timer.setInterval(1000L, myTimerEvent);
 }
 
 void loop()
 {
   // All the Blynk Magic happens here...
   Blynk.run();
+  timer.run(); // Initiates BlynkTimer
 
   // You can inject your own code or combine it with other sketches.
   // Check other examples on how to communicate with Blynk. Remember
