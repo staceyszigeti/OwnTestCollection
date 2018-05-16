@@ -62,6 +62,9 @@ char auth[] = "f232e41a757945378ec2dff5e9e106bf";
 char ssid[] = "UPC2D87C5A";
 char pass[] = "Ha7twFejvahm";
 
+/*char ssid[] = "LenovoA5000";
+char pass[] = "ac45catamaran";*/
+
 BlynkTimer timer;
 
 // This function sends Arduino's up time every second to Virtual Pin (5).
