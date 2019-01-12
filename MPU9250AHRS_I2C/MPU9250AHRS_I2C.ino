@@ -239,7 +239,7 @@ void loop()
       if(SerialDebug)
       {
         // Print acceleration values in milligs!
-        Serial.print("X-acceleration: "); Serial.print(1000 * myIMU.ax);
+        /*Serial.print("X-acceleration: "); Serial.print(1000 * myIMU.ax);
         Serial.print(" mg ");
         Serial.print("Y-acceleration: "); Serial.print(1000 * myIMU.ay);
         Serial.print(" mg ");
@@ -260,14 +260,14 @@ void loop()
         Serial.print("Y-mag field: "); Serial.print(myIMU.my);
         Serial.print(" mG ");
         Serial.print("Z-mag field: "); Serial.print(myIMU.mz);
-        Serial.println(" mG");
+        Serial.println(" mG");*/
 
         myIMU.tempCount = myIMU.readTempData();  // Read the adc values
         // Temperature in degrees Centigrade
         myIMU.temperature = ((float) myIMU.tempCount) / 333.87 + 21.0;
         // Print temperature in degrees Centigrade
-        Serial.print("Temperature is ");  Serial.print(myIMU.temperature, 1);
-        Serial.println(" degrees C");
+        //Serial.print("Temperature is ");  Serial.print(myIMU.temperature, 1);
+        //Serial.println(" degrees C");
       }
 
       myIMU.count = millis();
@@ -284,7 +284,7 @@ void loop()
     {
       if(SerialDebug)
       {
-        Serial.print("ax = ");  Serial.print((int)1000 * myIMU.ax);
+        /*Serial.print("ax = ");  Serial.print((int)1000 * myIMU.ax);
         Serial.print(" ay = "); Serial.print((int)1000 * myIMU.ay);
         Serial.print(" az = "); Serial.print((int)1000 * myIMU.az);
         Serial.println(" mg");
@@ -302,7 +302,7 @@ void loop()
         Serial.print("q0 = ");  Serial.print(*getQ());
         Serial.print(" qx = "); Serial.print(*(getQ() + 1));
         Serial.print(" qy = "); Serial.print(*(getQ() + 2));
-        Serial.print(" qz = "); Serial.println(*(getQ() + 3));
+        Serial.print(" qz = "); Serial.println(*(getQ() + 3));*/
       }
 
 // Define output variables from updated quaternion---these are Tait-Bryan
@@ -349,9 +349,9 @@ void loop()
         Serial.print(", ");
         Serial.println(myIMU.roll, 2);
 
-        Serial.print("rate = ");
+        /*Serial.print("rate = ");
         Serial.print((float)myIMU.sumCount / myIMU.sum, 2);
-        Serial.println(" Hz");
+        Serial.println(" Hz");*/
       }
 
 #ifdef LCD
