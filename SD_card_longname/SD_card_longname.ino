@@ -11,6 +11,8 @@ SdFat SD;
 SdFile file;
 String dest = "20190110-2323";
 char Str4[ ] = "arduini123.txt";
+int hour = 1;
+char timee[9];
 
 void setup() {
   Serial.begin(9600);
@@ -27,6 +29,9 @@ void setup() {
   file.println(String(Str4));
   file.close();
   Serial.println("Done");
+  sprintf(timee, "%02d:%02d:%02d", hour, hour, hour); ///< This has 3 2-digit integers with leading zeros, separated by ":" . The list of parameters, hour, min, sec, provides the numbers the sprintf prints out with.
+
+  Serial.println(timee);
 }
 //------------------------------------------------------------------------------
 void loop() {}
