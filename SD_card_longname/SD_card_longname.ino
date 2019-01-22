@@ -10,7 +10,7 @@ const uint8_t SD_CS_PIN = D0;
 SdFat SD;
 SdFile file;
 String dest = "20190110-2323";
-char Str4[ ] = "arduini.txt";
+char Str4[ ] = "arduini123.txt";
 
 void setup() {
   Serial.begin(9600);
@@ -21,11 +21,10 @@ void setup() {
     return;
   };
   
-  
   file.open(Str4, O_RDWR | O_CREAT);
 
   
-  file.println("Hello");
+  file.println(String(Str4));
   file.close();
   Serial.println("Done");
 }
