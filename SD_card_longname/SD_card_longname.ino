@@ -10,9 +10,8 @@ const uint8_t SD_CS_PIN = D0;
 SdFat SD;
 SdFile file;
 String dest = "20190110-2323";
-char Str4[ ] = "arduini123.txt";
-int hour = 1;
-char timee[9];
+char Str4[ ] = "20190122-2337";
+char datalog[88] = "$0;0000-00-00;00:00:00.000;00.0;000;+;0.000001;+;0.000001;000.0;000.0;000.0;00;00.0;000";
 
 void setup() {
   Serial.begin(9600);
@@ -26,12 +25,12 @@ void setup() {
   file.open(Str4, O_RDWR | O_CREAT);
 
   
-  file.println(String(Str4));
+  file.println(String(datalog));
   file.close();
   Serial.println("Done");
-  sprintf(timee, "%02d:%02d:%02d", hour, hour, hour); ///< This has 3 2-digit integers with leading zeros, separated by ":" . The list of parameters, hour, min, sec, provides the numbers the sprintf prints out with.
+ 
+  //dataString = "$"+sGps3DFix+";"+sGpsDate+";"+sGpsTime+";"+sGpsSOG+";"+sGpsCOG+";N;"+sGpsLat+";E;"+sGpsLon+";"+sPitch+";"+sRoll+";0000>"+sAccX+";"+sAccY+";"+sGpsFixQuality+";"+sGpsSatNum+";"+sGpsHDOP+";"+String(cycleTime)+">";
 
-  Serial.println(timee);
 }
 //------------------------------------------------------------------------------
 void loop() {}
