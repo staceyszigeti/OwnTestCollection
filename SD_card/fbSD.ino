@@ -19,13 +19,13 @@ void InitSD()
 
   if(SDFreeSize() > 25) {
     #ifdef DEBUG
-      Serial.println("Memóriakártya ok");
+      Serial.println("Memoriakartya ok");
     #endif
     SD.begin(chipSelect);
   } 
   else {
     #ifdef DEBUG
-      Serial.println("Memóriakártyán nincs szabad hely!");
+      Serial.println("Memoriakartyan nincs szabad hely!");
     #endif
   }
 };
@@ -42,7 +42,7 @@ uint32_t SDFreeSize()
   return volumesize;
 };
 
-boolean SDCardWrite(String dest, byte datalenght)
+boolean SDCardWrite(String dest, byte datalenght, long interval)
 /*
 Input:  - file name, destination 
         - lenght of the telegram (plus 2 char [CF; LF])
@@ -51,22 +51,28 @@ Output: - HIGH if the command was executed succefully
         - LOW if the command was not executed
 */
 {
-  byte charnum = 0;
+  unsigned long currentMillis = millis();
+
+  if(currentMillis - previousMillis > interval) {
+
+    previousMillis = currentMillis; 
+    byte charnum = 0;
   
-  File dataFile = SD.open(dest, FILE_WRITE);
-  
-  if (dataFile) {
-    dataFile.print(millis());
-    charnum = dataFile.println(dataString);
-    dataFile.close();
-    if (charnum == datalenght) {
-      return HIGH;
+    File dataFile = SD.open(dest, FILE_WRITE);
+    
+    if (dataFile) {
+      dataFile.println(millis());
+      charnum = dataFile.println(dataString);
+      dataFile.close();
+      if (charnum == datalenght) {
+        return HIGH;
+      } else {
+        return LOW;
+      };
+      
     } else {
       return LOW;
     };
-    
-  } else {
-    return LOW;
   };
 }
 
