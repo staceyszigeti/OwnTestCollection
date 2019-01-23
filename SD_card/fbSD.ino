@@ -3,7 +3,7 @@ void InitSD()
   if (!card.init(SPI_HALF_SPEED, chipSelect)) {
     
     #ifdef DEBUG
-      Serial.println("No SD card");
+      Serial.println(F("No SD card"));
     #endif
     
     return;
@@ -11,7 +11,7 @@ void InitSD()
     
     if (!volume.init(card)) {
       #ifdef DEBUG
-        Serial.println("Wrong partition");
+        Serial.println(F("Wrong partition"));
       #endif
       return;
     };
@@ -19,13 +19,13 @@ void InitSD()
 
   if(SDFreeSize() > 25) {
     #ifdef DEBUG
-      Serial.println("Memoriakartya ok");
+      Serial.println(F("Memoriakartya ok"));
     #endif
     SD.begin(chipSelect);
   } 
   else {
     #ifdef DEBUG
-      Serial.println("Memoriakartyan nincs szabad hely!");
+      Serial.println(F("Memoriakartyan nincs szabad hely!"));
     #endif
   }
 };

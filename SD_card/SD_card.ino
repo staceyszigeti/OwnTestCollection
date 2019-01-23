@@ -24,6 +24,6 @@ void setup()
 
 void loop(void) {
 
- SDCardWrite("asd333.log", 101, 200);
+ SDCardWrite("asd139.log", 101, 500);
  
 }
