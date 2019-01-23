@@ -2,6 +2,8 @@
 #include <SPI.h>
 #include <SD.h>
 
+#define DEBUG
+
 // set up variables using the SD utility library functions:
 Sd2Card card;
 SdVolume volume;

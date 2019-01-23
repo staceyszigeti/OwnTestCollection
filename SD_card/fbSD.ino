@@ -1,24 +1,33 @@
 void InitSD()
 {
   if (!card.init(SPI_HALF_SPEED, chipSelect)) {
-    //Nincs SD kártya
-    Serial.println("No SD card");
+    
+    #ifdef DEBUG
+      Serial.println("No SD card");
+    #endif
+    
     return;
   } else {
-    //SD kártya rendben
+    
     if (!volume.init(card)) {
-      //rosz particio
-      Serial.println("Wrong partition");
+      #ifdef DEBUG
+        Serial.println("Wrong partition");
+      #endif
       return;
     };
   };
 
   if(SDFreeSize() > 25) {
-    Serial.println("ok");
+    #ifdef DEBUG
+      Serial.println("Memóriakártya ok");
+    #endif
     SD.begin(chipSelect);
-  };
-  
-
+  } 
+  else {
+    #ifdef DEBUG
+      Serial.println("Memóriakártyán nincs szabad hely!");
+    #endif
+  }
 };
 
 uint32_t SDFreeSize()
@@ -47,18 +56,17 @@ Output: - HIGH if the command was executed succefully
   File dataFile = SD.open(dest, FILE_WRITE);
   
   if (dataFile) {
+    dataFile.print(millis());
     charnum = dataFile.println(dataString);
     dataFile.close();
     if (charnum == datalenght) {
       return HIGH;
-    } 
-    else {
-       return LOW;
+    } else {
+      return LOW;
     };
     
-  }
-  else {
+  } else {
     return LOW;
-  }
+  };
 }
 
