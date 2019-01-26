@@ -6,21 +6,30 @@ int current;         // Current state of the button
 long millis_held;    // How long the button was held (milliseconds)
 long secs_held;      // How long the button was held (seconds)
 long prev_secs_held; // How long the button was held in the previous check
-byte previous = HIGH;
+byte previous = LOW;
 unsigned long firstTime; // how long since the button was first pressed 
 
 
+#define LED_PIN           D4
+//LED-timer
+int ledState = LOW; 
+uint32_t previousMillisLedTimer = 1;
+uint32_t currentMillisLedTimer = 1;
+const uint16_t intervalLedTimer = 1000;
+
 void setup() {
-  Serial.begin(9600);         // Use serial for debugging
+  Serial.begin(38400);         // Use serial for debugging
   pinMode(ledPin, OUTPUT);
-  digitalWrite(inPin, HIGH);  // Turn on 20k pullup resistors to simplify switch input
+  pinMode(inPin, INPUT_PULLUP);
+  //digitalWrite(inPin, LOW);  // Turn on 20k pullup resistors to simplify switch input
+  digitalWrite(LED_PIN, HIGH); //Nem világít (SBU21)
 }
 
 void loop() {
   current = digitalRead(inPin);
 
   // if the button state changes to pressed, remember the start time 
-  if (current == LOW && previous == HIGH && (millis() - firstTime) > 200) {
+  if (current == HIGH && previous == LOW && (millis() - firstTime) > 200) {
     firstTime = millis();
   }
 
@@ -32,45 +41,62 @@ void loop() {
   if (millis_held > 50) {
 
     if (current == LOW && secs_held > prev_secs_held) {
-      ledblink(1, 50, ledPin); // Each second the button is held blink the indicator led
+      secs_held =0;
+      prev_secs_held = 0;
     }
 
     // check if the button was released since we last checked
-    if (current == HIGH && previous == LOW) {
-      // HERE YOU WOULD ADD VARIOUS ACTIONS AND TIMES FOR YOUR OWN CODE
-      // ===============================================================================
+    if (current == HIGH) {
 
-      // Button pressed for less than 1 second, one long LED blink
-      if (secs_held <= 0) {
-        //ledblink(1,750,ledPin);
+      // If the button was held for 3-6 seconds blink LED 10 times
+      if (secs_held >= 2 && secs_held < 10) {
+        ledBlink(HIGH, 1500, LED_PIN);
+        Serial.print("   Milliseconds held: ");
       }
 
       // If the button was held for 3-6 seconds blink LED 10 times
-      if (secs_held >= 1 && secs_held < 3) {
-        //ledblink(10,200,ledPin); 
+      if (secs_held > 15) {
+        secs_held =0;
+        prev_secs_held = 0;
       }
 
-      // Button held for 1-3 seconds, print out some info
-      if (secs_held >= 3) {
-        Serial.print("It Works!!! Seconds held: ");
-        Serial.print(secs_held);
-        Serial.print("   Milliseconds held: ");
-        Serial.println(millis_held);
-      }
       // ===============================================================================
     }
   }
+
+  Serial.println(secs_held);
+  Serial.println(current);
+  
 
   previous = current;
   prev_secs_held = secs_held;
 }
 
 // Just a simple helper function to blink an led in various patterns
-void ledblink(int times, int lengthms, int pinnum){
+/*void ledblink(int times, int lengthms, int pinnum){
   for (int x=0; x<times;x++) {
     digitalWrite(pinnum, HIGH);
     delay (lengthms);
     digitalWrite(pinnum, LOW);
     delay(lengthms);
   }
-}
+};*/
+
+
+void ledBlink(boolean enable, uint16_t lengthms, uint8_t pinnum){
+
+  if (enable == HIGH) {
+    if (currentMillisLedTimer - previousMillisLedTimer >= lengthms) {
+      previousMillisLedTimer = currentMillisLedTimer;
+  
+      if (ledState == LOW) {
+        ledState = HIGH;
+      } else {
+        ledState = LOW;
+      }
+      digitalWrite(pinnum, ledState);
+    };
+  } else {
+    previousMillisLedTimer = currentMillisLedTimer;
+  };
+};
