@@ -46,12 +46,12 @@ void loop() {
 
     if (current == HIGH) {
 
-      if (secs_held >= 3 && segedvaltozo == LOW) {
+      if (secs_held >= 2 && segedvaltozo == LOW) {
         output = !output;
         segedvaltozo = HIGH;
       };
 
-      if (secs_held <= 3 && segedvaltozo == HIGH) {
+      if (secs_held < 2 && segedvaltozo == HIGH) {
         output = !output;
         segedvaltozo = LOW;
         secs_held =0;
