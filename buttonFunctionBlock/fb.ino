@@ -1,6 +1,7 @@
 boolean Button(uint8_t hold_time) {
 
   /*-----Szükséges globális változók:---------------
+  boolean   currentButtonState;         // Current state of the button
   boolean   previousButtonState = LOW;
   uint32_t  millis_held;                // How long the button was held (milliseconds)
   uint8_t   secs_held;                  // How long the button was held (seconds)
