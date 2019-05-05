@@ -49,7 +49,7 @@
 
  *************************************************************/
 
-#define BLYNK_PRINT Serial // Enables Serial Monitor
+//#define BLYNK_PRINT Serial // Enables Serial Monitor
 
 // Following includes are for Arduino Ethernet Shield (W5100)
 // If you're using another shield, see Boards_* examples
@@ -97,16 +97,30 @@ void setup()
   }
   Serial.println("Connected to Blynk server");
   timer.setInterval(1000L, myTimerEvent);
+  timer.setInterval(30*1000, reconnectBlynk); //run every 30s
 }
 
 void loop()
 {
   // All the Blynk Magic happens here...
-  Blynk.run();
+  if(Blynk.connected()) { Blynk.run(); }
   timer.run(); // Initiates BlynkTimer
 
   // You can inject your own code or combine it with other sketches.
   // Check other examples on how to communicate with Blynk. Remember
   // to avoid delay() function!
+}
+
+void reconnectBlynk() {
+  if (!Blynk.connected()) {
+
+    Serial.println("Lost connection");
+    if(Blynk.connect()) {
+      Serial.println("Reconnected");
+    }
+    else {
+      Serial.println("Not reconnected");
+    }
+  }
 }
 
