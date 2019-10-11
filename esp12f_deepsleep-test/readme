@@ -1,0 +1,24 @@
+Programming with a USB to serial adapter:
+
+To wire up the programmer you need to connect the following pins (also shown in an image above):
+
+![Test Image 1](ESP8266-Programming-Circuit.png)
+
+Connect TX of the programmer to RX of the ESP8266 (Not a typo, the connections are reversed)
+Connect RX of the programmer to TX of the ESP8266
+Connect Ground of the programmer to Ground of the ESP8266
+To upload your sketch, do the following steps:
+
+Select the port number of your Serial adapter (Tools->Port)
+Enable programming mode on your ESP8266 as described above
+Click the upload button. (If it fails double check your wiring and try resting your board into programming mode again)
+Click the reset button when the upload has finished
+Here are the board settings I used when uploading using this method:
+
+Board: Generic ESP8266 Module
+Flash Mode: DIO
+Flash Size: 4M (3M Spiffs)
+Reset Method: ck
+Flash Frequency: 40MHz
+Upload Speed: 115200
+The last thing to note is the LED_BUILIN definition for a generic ESP8266 module points to pin 1, but the built in LED of a ESP12 module is connected to pin 2 (It's active low too just as an FYI). So if you are testing out a blink sketch you will need to use the number 2 rather than LED_BUILTIN
