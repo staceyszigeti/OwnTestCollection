@@ -2,7 +2,7 @@ Programming with a USB to serial adapter:
 
 To wire up the programmer you need to connect the following pins (also shown in an image above):
 
-![Test Image 1](https://github.com/staceyszigeti/OwnTestCollection/blob/master/esp12f_deepsleep-test/ESP8266-Programming-Circuit.png)
+![Test Image 1](https://raw.githubusercontent.com/staceyszigeti/OwnTestCollection/master/esp12f_deepsleep-test/ESP8266-Programming-Circuit.png)
 
 Connect TX of the programmer to RX of the ESP8266 (Not a typo, the connections are reversed)
 Connect RX of the programmer to TX of the ESP8266
