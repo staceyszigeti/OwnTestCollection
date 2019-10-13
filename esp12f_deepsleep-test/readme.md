@@ -4,6 +4,7 @@ https://circuits4you.com/2016/12/14/reset-programming-esp8266/
 To wire up the programmer you need to connect the following pins (also shown in an image above):
 
 ![alt text](https://raw.githubusercontent.com/staceyszigeti/OwnTestCollection/master/esp12f_deepsleep-test/ESP8266-Programming-Circuit.png)
+![alt text](https://www.allaboutcircuits.com/uploads/articles/20170323-lee-wifieye-circuit-pgm-1.jpg)
 
 Connect TX of the programmer to RX of the ESP8266 (Not a typo, the connections are reversed)
 Connect RX of the programmer to TX of the ESP8266
