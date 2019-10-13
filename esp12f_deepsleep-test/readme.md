@@ -1,4 +1,4 @@
-# H1 Programming with a USB to serial adapter:
+# Programming with a USB to serial adapter:
 https://circuits4you.com/2016/12/14/reset-programming-esp8266/
 
 To wire up the programmer you need to connect the following pins (also shown in an image above):
@@ -33,5 +33,5 @@ To put device in serial programming mode
 4. These steps put ESP8266 in serial programming mode.
 Once the device is programmed the internal default flash will be erased, default program can control ESP8266 using AT commands. Once you flash it using above steps you will not able to use AT commands on ESP8266. You have to re-flash with its original AT command boot code to use AT commands again.
 
-# H1 Deepsleep
+# Deepsleep
 https://randomnerdtutorials.com/esp8266-deep-sleep-with-arduino-ide/
